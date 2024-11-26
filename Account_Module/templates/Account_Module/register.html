@@ -1,0 +1,56 @@
+{% extends 'shared/_layout.html' %}
+
+{% block title %}
+    ثبت نام
+{% endblock %}
+
+{% block content %}
+    <div class="h-max mx-auto flex flex-col items-center">
+            <h1 class="text-xl font-bold text-center pb-12 Btn__text text_icon text-[#4F46A5]">ثبت نام</h1>
+            <form action="{% url 'register_page' %}" method="post">
+                {% csrf_token %}
+                <div class="bg-white shadow-xl p-10 flex flex-col gap-4 text-sm">
+                    <div>
+                        <label class="text-gray-600 font-bold inline-block pb-2" for="email">{{ register_form.email.label_tag }}</label>
+                        {{ register_form.email }}
+                        <div class="error">
+                            {{ register_form.email.errors }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-gray-600 font-bold inline-block pb-2" for="username">{{ register_form.username.label_tag }}</label>
+                        {{ register_form.username }}
+                        <div class="error">
+                            {{ register_form.username.errors }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-gray-600 font-bold inline-block pb-2" for="password">{{ register_form.password.label_tag }}</label>
+                        {{ register_form.password }}
+                        <div class="error">
+                            {{ register_form.password.errors }}
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-gray-600 font-bold inline-block pb-2" for="confirm_password">{{ register_form.confirm_password.label_tag }}</label>
+                        {{ register_form.confirm_password }}
+                        <div class="error">
+                            {{ register_form.confirm_password.errors }}
+                        </div>
+                    </div>
+                    <div>
+                        <button class="bg-[#4F46E5] w-full py-2 rounded-md text-white font-bold cursor-pointer hover:bg-[#181196]" type="submit">ثبت نام</button>
+                    </div>
+                    <div>
+                        <p class="text-center">ادامه بده با</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button class="bg-[#1D9BF0] w-1/2 py-1 rounded-md text-white font-bold cursor-pointer hover:bg-[#181196]">توییتر</button>
+                        <button class="bg-[#24292F] w-1/2 py-1 rounded-md text-white font-bold cursor-pointer hover:bg-[#181196]">گیت هاب</button>
+
+                    </div>
+                </div>
+            </form>
+            <p class="text-sm text-gray-500 mt-10"><a href="{% url 'home_page' %}" class="text-[#4F46E5] font-bold">برگشت به صفحه اصلی</a></p>
+        </div>
+{% endblock %}

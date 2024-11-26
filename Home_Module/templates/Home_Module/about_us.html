@@ -1,0 +1,53 @@
+{% extends 'shared/_layout.html' %}
+
+{% load thumbnail %}
+
+{% block title %}
+    درباره ما
+{% endblock %}
+
+{% block content %}
+    <section class="bg-gray-900 text-white">
+            <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+                <div class="mx-auto max-w-3xl text-center">
+                    <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+                        کاری را که نمی توانید انجام دهید
+
+                        <span class="sm:block"> همراه ما باشید  </span>
+                    </h1>
+
+                    <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+                        ما تیم دیجیتال دریم هستیم در کنار شما تا اخرین لحظه هستیم
+                        <br>
+                        به زیبایی فکر کن، به ما فکر کن
+                    </p>
+                </div>
+            </div>
+    </section>
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div class="grid gap-10 mx-auto sm:grid-cols-2 lg:grid-cols-4 lg:max-w-screen-lg">
+            {% for user in users %}
+                <div>
+                    {% if user.avatar %}
+                        {% thumbnail user.avatar '480x480' crop='center' quality=95 as im %}
+                            <img class="object-cover w-24 h-24 rounded-full shadow" src="{{ im.url }}" alt="{{ user }}">
+                        {% endthumbnail %}
+                    {% else %}
+                        <img class="object-cover w-24 h-24 rounded-full shadow" src="/asset/images/icons8_developer_64.png" alt="Person">
+                    {% endif %}
+                    <div class="flex flex-col justify-center mt-2">
+                        <p class="text-lg font-bold">{{ user }}</p>
+                        <p class="mb-4 text-xs text-gray-800">{{ user.field }}</p>
+                        <p class="text-sm tracking-wide text-gray-800">
+{#                            {% for skill in dev_skills %}#}
+{#                                {{ skill }}#}
+{#                            {% endfor %}#}
+                        {{ user.skill | linebreaksbr }}
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

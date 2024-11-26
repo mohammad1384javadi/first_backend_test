@@ -1,0 +1,33 @@
+{% load render_partial %}
+<html lang="fa">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>{% block title %}{% endblock %}</title>
+        {% include 'shared/header_references.html' %}
+        <style>
+            .panel{
+                width: 100px;
+                height: auto;
+                max-width: 100%;
+                margin-left: 10px;
+            }
+            .text_icon{
+                margin-top: 80px;
+                margin-bottom: 0;
+            }
+        </style>
+       </head>
+    <body>
+
+    <!-- navbar -->
+        {% render_partial 'Home_Module.views.site_header_component' %}
+
+        {% block content %}{% endblock %}
+
+        <!-- Foooter -->
+        {% render_partial 'Home_Module.views.site_footer_component' %}
+
+        {% include 'shared/footer_references.html' %}
+    </body>
+</html>

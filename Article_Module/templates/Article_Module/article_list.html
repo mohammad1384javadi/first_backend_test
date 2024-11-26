@@ -1,0 +1,42 @@
+{% extends 'shared/_layout.html' %}
+{% load thumbnail %}
+{% load poll_extras %}
+
+{% block title %}
+    لیست مقالات
+{% endblock %}
+
+{% block content %}
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container px-6 py-10 mx-auto">
+            <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">   مقالات</h1>
+    
+            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                {% for article in articles %}
+                    <div class="lg:flex">
+                        {% if article.image %}
+                            {% thumbnail article.image '500x500' crop='center' quality=95 as im %}
+                                <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="{{ im.url }}" alt="{{ article.title }}">
+                            {% endthumbnail %}
+                        {% else %}
+                            <img class="object-cover w-full h-56 rounded-lg lg:w-64" src="/asset/images/icons8_developer_64.png" alt="{{ article.title }}">
+                        {% endif %}
+
+                        <div class="flex flex-col justify-between py-6 lg:mx-6">
+                            <a href="#" class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
+                               {{ article.title }}
+                            </a>
+
+                            <span class="text-sm text-gray-500 dark:text-gray-300">
+                                {{ article.create_date | date }}
+                                <br>
+                                {{ article.create_date | time }}
+                            </span>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
